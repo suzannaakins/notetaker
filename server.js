@@ -34,7 +34,6 @@ app.post('/api/notes', (req, res) => {
     const newNote = req.body;
     //set id of incoming data based on what next index of array will be
     newNote.id = notes.length.toString();
-    console.log(newNote);
     notes.push(newNote);
     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
 });
@@ -44,7 +43,6 @@ app.post('/api/notes', (req, res) => {
 
 // DELETE /api/notes/:id should receive a query parameter containing the id of a note to delete. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
 app.delete('/api/notes/:id', (req, res) => {
-    console.log(req.params.id);
     var newArray = notes.filter(note => {
         return note.id !== req.params.id
     });
